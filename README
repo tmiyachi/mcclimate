@@ -1,0 +1,12 @@
+個人的モジュール
+必要なもの
+numpy
+scipy
+
+const.py -- 定数
+getamedas.py -- 気象庁のサイトからアメダスデータを取得
+kf_filter.py -- Wheeler & Kiladis (1999) で使われるスペクトルフィルター
+spectrum.py  -- Wheeler & Kiladis (1999) のパワースペクトル解析　作成中
+stats.py     -- 移動平均とか
+tools.py     -- 便利系
+plotutil.py  -- matplotlibで使えるかな
