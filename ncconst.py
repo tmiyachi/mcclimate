@@ -4,7 +4,7 @@ import datetime
 import scipy
 
 #class Ncconst:
-def createncf(fname, title=None, tdata=None, zdata=None, latdata=None, londata=None):
+def createnc(fname, title=None, time=None, lev=None, lat=None, lon=None):
 
     f = netcdf.netcdf_file('test.nc', 'w')
         
@@ -57,7 +57,7 @@ def createncf(fname, title=None, tdata=None, zdata=None, latdata=None, londata=N
     f.flush()
     return f
 
-def setvariabele(ncf, varname, vararray, dims):
+def createvar(ncf, varname, vararray, dims):
 
     vardims = []
     for dim in dims:
