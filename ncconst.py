@@ -6,7 +6,7 @@ import scipy
 #class Ncconst:
 def createnc(fname, title=None, time=None, lev=None, lat=None, lon=None):
 
-    f = netcdf.netcdf_file('test.nc', 'w')
+    f = netcdf.netcdf_file(fname, 'w')
         
     #global atrribute
     if title == None:
