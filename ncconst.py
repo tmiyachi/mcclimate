@@ -52,7 +52,7 @@ def createnc(fname, title=None, time=None, lev=None, lat=None, lon=None):
         timvar.long_name = 'Time'
         timvar.standard_name = 'time'
         timvar.axis = 't'
-        timvar[:] = np.array(timvar, np.float64)
+        timvar[:] = np.array(time, np.float64)
         
     f.flush()
     return f
