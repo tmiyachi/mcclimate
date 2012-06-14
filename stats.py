@@ -12,7 +12,7 @@ def runave(rdata, length):
 
        'array'  -- first dimension must be time.
 
-       'length' -- runnning mean length 
+       'length' -- runnning mean length
 
     """
     ntim = rdata.shape[0]
