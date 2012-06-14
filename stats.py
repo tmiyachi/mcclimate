@@ -10,7 +10,7 @@ def runave(rdata, length):
     
     Arguments:
 
-       'array'  -- first dimension must be time.
+       'array'  -- first dimension must be time. 
 
        'length' -- runnning mean length
 
