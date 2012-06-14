@@ -37,19 +37,18 @@ class KFfilter:
         data = signal.detrend(datain, axis=0)
 
         #tapering
-        #taper by cos tapering
+        #taper by cos tapering same dtype as input array
         if tim_taper !=0:
             tp = int(ntim*tim_taper)
-            window = numpy.ones(ntim)
+            window = numpy.ones(ntim, dtype=datain.dtype)
             x = numpy.arange(tp)
             window[:tp] = 0.5*(1.0-numpy.cos(x*pi/tp))
             window[-tp:] = 0.5*(1.0-numpy.cos(x[::-1]*pi/tp))
             data = data * window[:,NA,NA]
-        print data.dtype, data.shape
-        data.dtype = datain.dtype
+
         #FFT
         self.fftdata = fftpack.fft2(data, axes=(0,2))
-        print self.fftdata.shape
+
         #Note
         # fft is defined by exp(-ikx), so to adjust exp(ikx) multipried minus         
         wavenumber = -fftpack.fftfreq(nlon)*nlon
@@ -66,7 +65,7 @@ class KFfilter:
 
         self.wavenumber = wavenumber
         self.frequency = frequency
-        print knum.shape, self.fftdata.shape
+
     def decompose_antisymm(self):
         """decompose attribute data to sym and antisym component
         """
