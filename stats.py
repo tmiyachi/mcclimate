@@ -3,9 +3,9 @@ import scipy.signal as signal
 import sys
 from tools import unshape
 
-NA = np.newaxis()
+NA = np.newaxis
 
-def runave(array, length):
+def runave(rdata, length):
     """runnnig average
     
     Arguments:
@@ -15,40 +15,39 @@ def runave(array, length):
        'length' -- runnning mean length 
 
     """
-    ntim = array.shape[0]
+    ntim = rdata.shape[0]
     if ntim < length:
         print "input array first dimension length must be larger than length."
         sys.exit()        
 
-    if array.ndim == 1:
+    if rdata.ndim == 1:
         if length%2 != 0:
             w = np.ones(length)/float(length)
         else:
             w = np.r_[0.5, np.ones(length-1), 0.5]/float(length)                
-        runarray = np.ma.array(signal.convolve2d(array, w, 'same'))
+        runarray = np.ma.array(signal.convolve(rdata, w, 'same'))
         runarray[:length/2] = np.ma.masked
         runarray[-length/2:] = np.ma.masked
-    else if array.ndim == 2:
+    elif rdata.ndim == 2:
         if length%2 != 0:
             w = np.vstack((np.zeros(length),np.ones(length),np.zeros(length)))/float(length)
         else:
             w = np.vstack((np.zeros(length+1),np.r_[0.5, np.ones(length-1), 0.5],\
                            np.zeros(length+1)))/float(length)
-        runarray = np.ma.array(signal.convolve2d(array, w, 'same'))
+        runarray = np.ma.array(signal.convolve2d(rdata, w, 'same'))
         runarray[:length/2,:] = np.ma.masked
         runarray[-length/2:,:] = np.ma.masked
-        array = array.reshape(oldshape)
-    else array.ndim > 2:
-        array, oldshape = unshape(array) 
+    else :
+        rdata, oldshape = unshape(rdata) 
         if length%2 != 0:
             w = np.vstack((np.zeros(length),np.ones(length),np.zeros(length)))/float(length)
         else:
             w = np.vstack((np.zeros(length+1),np.r_[0.5, np.ones(length-1), 0.5],\
                            np.zeros(length+1)))/float(length)
-        runarray = np.ma.array(signal.convolve2d(array, w, 'same'))
+        runarray = np.ma.array(signal.convolve2d(rdata, w, 'same'))
         runarray[:length/2,:] = np.ma.masked
         runarray[-length/2:,:] = np.ma.masked
-        array = array.reshape(oldshape)
+        runarray = runarray.reshape(oldshape)
 
     return runarray
 
