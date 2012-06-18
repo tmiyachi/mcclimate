@@ -3,7 +3,7 @@
 ##########################################################
 from dateutil import parser
 from datetime import timedelta
-
+import numpy
 
 
 def lon2txt(lon, pos=None):
