@@ -27,17 +27,6 @@ def unshape(arraynd):
     
     return array2d, oldshape
 
-def timelist(start, end, nparray=True):
-        startdate = parser.parse(start)
-        enddate = parser.parse(end)
-        deltadate = timedelta(days=1)
-        tnum = (enddate-startdate).days+1
-        
-        if nparray:
-            return numpy.array([startdate + deltadate*i for i in range(tnum)])
-        else:
-            return [startdate + deltadate*i for i in range(tnum)]
-                                                                        
 class Timemask():
     #mask array for sequential time series manipuration
     def __init__(self, start, end):

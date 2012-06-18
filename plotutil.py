@@ -40,3 +40,15 @@ def lat2txt(lat, pos=None):
         latlabstr = u'%s\N{DEGREE SIGN}'%fmt
         latlab = latlabstr%lat
     return latlab
+
+def timelist(start, end, nparray=True):
+        startdate = parser.parse(start)
+        enddate = parser.parse(end)
+        deltadate = timedelta(days=1)
+        tnum = (enddate-startdate).days+1
+        
+        if nparray:
+            return numpy.array([startdate + deltadate*i for i in range(tnum)])
+        else:
+            return [startdate + deltadate*i for i in range(tnum)]
+                                                                        
