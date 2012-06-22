@@ -27,11 +27,11 @@ class KFfilter:
         ntim, nlat, nlon = datain.shape
 
         #remove the lowest three harmonics of the seasonal cycle (WK99, WKW03)
-        if ntim > 365*spd/3:
-            rf = fftpack.rfft(datain,axis=0)
-            freq = fftpack.rfftfreq(ntim*spd, d=1./float(spd))
-            rf[(freq <= 3./365) & (freq >=1./365),:,:] = 0.0     #freq<=3./365 only??
-            datain = fftpack.irfft(rf,axis=0)
+##         if ntim > 365*spd/3:
+##             rf = fftpack.rfft(datain,axis=0)
+##             freq = fftpack.rfftfreq(ntim*spd, d=1./float(spd))
+##             rf[(freq <= 3./365) & (freq >=1./365),:,:] = 0.0     #freq<=3./365 only??
+##             datain = fftpack.irfft(rf,axis=0)
 
         #remove dominal trend
         data = signal.detrend(datain, axis=0)
@@ -54,7 +54,7 @@ class KFfilter:
         wavenumber = -fftpack.fftfreq(nlon)*nlon
         frequency = fftpack.fftfreq(ntim, d=1./float(spd))
         knum, freq = numpy.meshgrid(wavenumber, frequency)
-        
+
         #make f<0 domain same as f>0 domain
         #CAUTION: wave definition is exp(i(k*x-omega*t)) but FFT definition exp(-ikx)
         #so cahnge sign
