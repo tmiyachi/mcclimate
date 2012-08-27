@@ -58,16 +58,14 @@ def regression(x, y):
     if x.ndim != 1:
         print "error x must be 1-D array"
         sys.exit()
-    if y.ndim < 2:
-        print "error y's dimmension must be larger than 2"
-    if y.ndim > 2:
+    if y.ndim >= 2:
         x, oldshape = unshape(x)
-        a = ((x[:,NA]*y).mean(axis=0) - x.mean()*y.mean(axis=0)) / x.var()
-        b = y - a*x[:,NA]
-        a = a.reshape(oldshape)
-        b = b.reshape(oldshape)
+        p = np.polyfit(x,y,1)
+        a = p[0].reshape(oldshape[1:])
+        b = p[1].reshape(oldshape[1:])
     else:
-        a = ((x[:,NA]*y).mean(axis=0) - x.mean()*y.mean(axis=0)) / x.var()
-        b = y - a*x[:,NA]
-       
+        p = np.polyfit(x,y,1)
+        a = p[0]
+        b = p[1]
+
     return a, b
