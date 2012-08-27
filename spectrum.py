@@ -168,6 +168,7 @@ class WK99spectrum:
         self.background = background
         self.sumpower = sumpower
 
+
 def calcspectrum(sumpower, frequency, rawsmooth=1, freqtimes=30, stepfreq=[0.1,0.2,0.3,1.], wavetimes=[5,10,20,40], ifmask=True):
     """calculation symmetric & antisymmetric componet & background spectram
 
