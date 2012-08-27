@@ -1,3 +1,4 @@
+
 import numpy
 import scipy.fftpack as fftpack
 import scipy.signal as signal
@@ -37,19 +38,11 @@ class KFfilter:
         data = signal.detrend(datain, axis=0)
 
         #tapering
-<<<<<<< HEAD
-<<<<<<< HEAD
-        #taper by cos tapering
         if tim_taper == 'hann':
             window = signal.hann(ntim)
             data = data * window[:,NA,NA]
         else if tim_taper > 0:
-=======
-=======
->>>>>>> origin/master
         #taper by cos tapering same dtype as input array
-        if tim_taper !=0:
->>>>>>> f2843e062845cd01357f2e4483645c39853ca487
             tp = int(ntim*tim_taper)
             window = numpy.ones(ntim, dtype=datain.dtype)
             x = numpy.arange(tp)
