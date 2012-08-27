@@ -78,7 +78,7 @@ class Time():
                 hours = int(string)
                 string = ''
             else:
-                string = string % i
+                string = string + i
             
         startdate = parser.parse(start)
         enddate = parser.parse(end)
