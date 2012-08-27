@@ -73,7 +73,7 @@ class WK99spectrum:
             # multipling window function to taper segments to zero
             #------------------------------------------------------------------------
             if tim_taper == 'hann':
-                window = signal.hann(ntim)
+                window = signal.hann(nSampWin)
                 data = data * window[:,NA,NA]
             elif tim_taper > 0:
                 tp = int(nSampWin*tim_taper)
