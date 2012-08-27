@@ -92,7 +92,7 @@ class Time():
             timeint.add(int(date.strftime('%Y%m%j')))
             date += deltadate
 
-        self.time = time
+        self.time = numpy.array(time)
         self.timeint = numpy.array(timeint)
         self.year = self.timeint/100000
         self.month = self.timeint%100000/1000
