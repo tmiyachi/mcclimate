@@ -75,7 +75,7 @@ class Time():
                 days = int(string)
                 string = ''
             elif i == 'h' or i == 'H':
-                hours = = int(string)
+                hours = int(string)
                 string = ''
             else:
                 string.add(i)
