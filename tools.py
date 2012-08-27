@@ -88,8 +88,8 @@ class Time():
         timeint = []
         date = startdate
         while(date <= enddate):
-            time.add(date)
-            timeint.add(int(date.strftime('%Y%m%j')))
+            time.append(date)
+            timeint.append(int(date.strftime('%Y%m%j')))
             date += deltadate
 
         self.time = numpy.array(time)
