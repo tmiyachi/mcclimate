@@ -72,7 +72,10 @@ class WK99spectrum:
             #- terpaing -------------------------------------------------------------
             # multipling window function to taper segments to zero
             #------------------------------------------------------------------------
-            if tim_taper != 0:
+            if tim_taper == 'hann':
+                window = signal.hann(ntim)
+                data = data * window[:,NA,NA]
+            else if tim_taper > 0:
                 tp = int(nSampWin*tim_taper)
                 window = numpy.ones(nSampWin)
                 x = numpy.arange(tp)
