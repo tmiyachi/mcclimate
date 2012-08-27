@@ -27,23 +27,28 @@ class KFfilter:
         ntim, nlat, nlon = datain.shape
 
         #remove the lowest three harmonics of the seasonal cycle (WK99, WKW03)
-        if ntim > 365*spd/3:
-            rf = fftpack.rfft(datain,axis=0)
-            freq = fftpack.rfftfreq(ntim*spd, d=1./float(spd))
-            rf[(freq <= 3./365) & (freq >=1./365),:,:] = 0.0     #freq<=3./365 only??
-            datain = fftpack.irfft(rf,axis=0)
+##         if ntim > 365*spd/3:
+##             rf = fftpack.rfft(datain,axis=0)
+##             freq = fftpack.rfftfreq(ntim*spd, d=1./float(spd))
+##             rf[(freq <= 3./365) & (freq >=1./365),:,:] = 0.0     #freq<=3./365 only??
+##             datain = fftpack.irfft(rf,axis=0)
 
         #remove dominal trend
         data = signal.detrend(datain, axis=0)
 
         #tapering
+<<<<<<< HEAD
         #taper by cos tapering
         if tim_taper == 'hann':
             window = signal.hann(ntim)
             data = data * window[:,NA,NA]
         else if tim_taper > 0:
+=======
+        #taper by cos tapering same dtype as input array
+        if tim_taper !=0:
+>>>>>>> f2843e062845cd01357f2e4483645c39853ca487
             tp = int(ntim*tim_taper)
-            window = numpy.ones(ntim)
+            window = numpy.ones(ntim, dtype=datain.dtype)
             x = numpy.arange(tp)
             window[:tp] = 0.5*(1.0-numpy.cos(x*pi/tp))
             window[-tp:] = 0.5*(1.0-numpy.cos(x[::-1]*pi/tp))
@@ -57,7 +62,7 @@ class KFfilter:
         wavenumber = -fftpack.fftfreq(nlon)*nlon
         frequency = fftpack.fftfreq(ntim, d=1./float(spd))
         knum, freq = numpy.meshgrid(wavenumber, frequency)
-        
+
         #make f<0 domain same as f>0 domain
         #CAUTION: wave definition is exp(i(k*x-omega*t)) but FFT definition exp(-ikx)
         #so cahnge sign
