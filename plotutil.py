@@ -11,7 +11,7 @@ def lon2txt(lon, pos=None):
        you can use this function matplotlib axis labeling
        
        usage:
-              from matplotlib.ticke import FuncFormatter
+              from matplotlib.ticker import FuncFormatter
        
               ax.xaxis.set_major_formatter(FuncFormatter(lon2txt) 
 
