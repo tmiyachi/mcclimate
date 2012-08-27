@@ -41,7 +41,7 @@ class KFfilter:
         if tim_taper == 'hann':
             window = signal.hann(ntim)
             data = data * window[:,NA,NA]
-        else if tim_taper > 0:
+        elif tim_taper > 0:
         #taper by cos tapering same dtype as input array
             tp = int(ntim*tim_taper)
             window = numpy.ones(ntim, dtype=datain.dtype)
