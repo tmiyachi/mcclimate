@@ -97,3 +97,4 @@ class Time():
         self.year = self.timeint/100000
         self.month = self.timeint%100000/1000
         self.days = self.timeint%1000
+

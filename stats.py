@@ -59,7 +59,7 @@ def regression(x, y):
         print "error x must be 1-D array"
         sys.exit()
     if y.ndim >= 2:
-        x, oldshape = unshape(x)
+        y, oldshape = unshape(y)
         p = np.polyfit(x,y,1)
         a = p[0].reshape(oldshape[1:])
         b = p[1].reshape(oldshape[1:])
